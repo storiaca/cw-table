@@ -1,5 +1,19 @@
+import NewRoleForm from "@/components/Role/NewRoleForm";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 const AddRole = () => {
-  return <h1>Add Role</h1>;
+  return (
+    <Container>
+      <Box>
+        <Card>
+          <Typography variant="h1">Add Role</Typography>
+        </Card>
+        <NewRoleForm />
+      </Box>
+    </Container>
+  );
 };
 
 export default AddRole;
