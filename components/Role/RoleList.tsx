@@ -19,14 +19,18 @@ const RoleList = ({ roles }: RoleProps) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Role Name</TableCell>
+            <TableCell>N</TableCell>
+            <TableCell align="right">Role Name</TableCell>
             <TableCell align="right">Description</TableCell>
+            <TableCell align="right">Update</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {roles.map((role: RoleProps) => (
+          {roles.map((role: RoleProps, index: number) => (
             <Role
               key={role.id}
+              id={role.id}
+              index={index + 1}
               roleName={role.roleName}
               description={role.description}
             />

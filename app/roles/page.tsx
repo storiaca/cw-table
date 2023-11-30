@@ -1,4 +1,5 @@
 import RoleList from "@/components/Role/RoleList";
+import Link from "next/link";
 import db from "@/utils/db";
 
 import Box from "@mui/material/Box";
@@ -16,8 +17,6 @@ export type RoleType = {
 
 const getRoles = async () => {
   const roles = await db.roles.findMany({});
-  console.log(roles);
-
   return roles;
 };
 
@@ -27,10 +26,13 @@ const RolesPage = async () => {
     <Container>
       <Box>
         <Card>
-          <Typography variant="h1">Roles</Typography>
+          <Typography variant="h2" component="h1">
+            Roles
+          </Typography>
         </Card>
       </Box>
       <RoleList roles={roles} />
+      <Link href="/roles/add">Add Role</Link>
     </Container>
   );
 };

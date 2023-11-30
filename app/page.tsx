@@ -8,7 +8,9 @@ export default function Home() {
     <Container>
       <Box>
         <Card>
-          <Typography variant="h1">Welcome dear customer</Typography>
+          <Typography variant="h1" align="center">
+            Welcome dear customer
+          </Typography>
         </Card>
       </Box>
     </Container>

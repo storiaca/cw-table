@@ -8,7 +8,9 @@ const AddRole = () => {
     <Container>
       <Box>
         <Card>
-          <Typography variant="h1">Add Role</Typography>
+          <Typography variant="h2" component="h1">
+            Add Role
+          </Typography>
         </Card>
         <NewRoleForm />
       </Box>
