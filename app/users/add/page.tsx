@@ -8,7 +8,7 @@ const Adduser = () => {
     <Container>
       <Box>
         <Card>
-          <Typography variant="h2" component="h1">
+          <Typography variant="h2" component="h1" align="center">
             Add User
           </Typography>
         </Card>

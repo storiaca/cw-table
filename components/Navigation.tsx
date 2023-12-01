@@ -1,3 +1,5 @@
+"use client";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AppBar, Box, CssBaseline, Typography, Toolbar } from "@mui/material";
 const links = [
@@ -6,6 +8,7 @@ const links = [
   { href: "/users", label: "Users" },
 ];
 const Navigation = () => {
+  const pathname = usePathname();
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -18,7 +21,12 @@ const Navigation = () => {
             <ul className="nav-wrap">
               {links.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href}>{link.label}</Link>
+                  <Link
+                    href={link.href}
+                    className={`${pathname === link.href ? "active" : ""}`}
+                  >
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

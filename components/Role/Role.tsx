@@ -18,7 +18,9 @@ const Role = ({ id, roleName, description, index }: RoleSingleType) => {
       <TableCell align="right">{roleName}</TableCell>
       <TableCell align="right">{description}</TableCell>
       <TableCell align="right">
-        <Link href={`/roles/update/${id}`}>Update</Link>
+        <Link className="update-btn" href={`/roles/update/${id}`}>
+          Update
+        </Link>
       </TableCell>
     </TableRow>
   );

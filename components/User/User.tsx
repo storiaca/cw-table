@@ -20,7 +20,9 @@ const User = ({ id, index, firstName, lastName, roleName }: UserSingleType) => {
       <TableCell align="right">{lastName}</TableCell>
       <TableCell align="right">{roleName}</TableCell>
       <TableCell align="right">
-        <Link href={`/users/update/${id}`}>Update</Link>
+        <Link className="update-btn" href={`/users/update/${id}`}>
+          Update
+        </Link>
       </TableCell>
     </TableRow>
   );

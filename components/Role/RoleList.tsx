@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 export type RoleProps = {
-  id?: string;
+  id: string;
   roleName: string;
   description: string;
 };
@@ -19,10 +19,16 @@ const RoleList = ({ roles }: RoleProps) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>N</TableCell>
-            <TableCell align="right">Role Name</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Update</TableCell>
+            <TableCell sx={{ fontWeight: "700" }}>NR</TableCell>
+            <TableCell align="right" sx={{ fontWeight: "700" }}>
+              Role Name
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "700" }}>
+              Description
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "700" }}>
+              Update
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

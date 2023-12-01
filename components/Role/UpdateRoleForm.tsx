@@ -1,10 +1,20 @@
-import { newRole } from "@/utils/actions";
+"use client";
+import { useState } from "react";
+
+import { RoleProps } from "./RoleList";
+import { updateRole } from "@/utils/actions";
 import { TextField, Button, Box, Grid, Paper } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-const NewRoleForm = () => {
+
+const UpdateRoleForm = ({ role }: RoleProps) => {
+  const [nameRole, setNameRole] = useState<string>(role.roleName);
+  const [descriptionRole, setDescriptionRole] = useState<string>(
+    role.description
+  );
+
   return (
     <Box component={Paper} sx={{ padding: "20px" }}>
-      <form action={newRole}>
+      <form action={() => updateRole(role.id, nameRole, descriptionRole)}>
         <Grid spacing={1}>
           <Grid item xs={12} sx={{ marginBottom: "20px" }}>
             <FormControl sx={{ width: "100%" }}>
@@ -15,6 +25,8 @@ const NewRoleForm = () => {
                 color="secondary"
                 name="roleName"
                 label="Role Name"
+                value={nameRole}
+                onChange={(e) => setNameRole(e.target.value)}
                 fullWidth
                 required
               />
@@ -29,6 +41,8 @@ const NewRoleForm = () => {
                 color="secondary"
                 name="description"
                 label="Description"
+                value={descriptionRole}
+                onChange={(e) => setDescriptionRole(e.target.value)}
                 fullWidth
               />
             </FormControl>
@@ -36,7 +50,7 @@ const NewRoleForm = () => {
         </Grid>
         <Box textAlign="right">
           <Button variant="contained" type="submit">
-            Add Role
+            Update Role
           </Button>
         </Box>
       </form>
@@ -44,4 +58,4 @@ const NewRoleForm = () => {
   );
 };
 
-export default NewRoleForm;
+export default UpdateRoleForm;

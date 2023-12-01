@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 
-import { newUser } from "@/utils/actions";
-import { RoleType } from "@/app/roles/page";
+import { UserProps } from "./UserList";
+import { updateUser } from "@/utils/actions";
 import {
   TextField,
   Button,
@@ -14,10 +14,14 @@ import {
   Grid,
 } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
+import { RoleType } from "@/app/roles/page";
 
-const NewUserForm = () => {
+const UpdateUserForm = ({ user }: UserProps) => {
   const [roles, setRoles] = useState<RoleType | null>([]);
-  const [roleSelect, setRoleSelect] = useState<string | null>("");
+  const [firstName, setFirstName] = useState<string>(user.firstName);
+  const [lastName, setLastName] = useState<string>(user.lastName);
+  const [email, seEmail] = useState<string>(user.email);
+  const [roleName, setRoleName] = useState<string>(user.roleName);
 
   const handleFetchRoles = async () => {
     const response = await fetch("http://localhost:3000/api/roles");
@@ -32,7 +36,11 @@ const NewUserForm = () => {
 
   return (
     <Box component={Paper} sx={{ padding: "20px" }}>
-      <form action={newUser}>
+      <form
+        action={(e) =>
+          updateUser(user.id, firstName, lastName, email, roleName)
+        }
+      >
         <Grid item xs={12} sx={{ marginBottom: "20px" }}>
           <FormControl sx={{ width: "100%" }}>
             <TextField
@@ -42,6 +50,8 @@ const NewUserForm = () => {
               color="secondary"
               name="firstName"
               label="First Name"
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
               fullWidth
               required
             />
@@ -56,6 +66,8 @@ const NewUserForm = () => {
               color="secondary"
               name="lastName"
               label="Last Name"
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
               fullWidth
               required
             />
@@ -70,6 +82,8 @@ const NewUserForm = () => {
               color="secondary"
               name="email"
               label="E-mail"
+              onChange={(e) => seEmail(e.target.value)}
+              value={email}
               fullWidth
               required
             />
@@ -81,10 +95,10 @@ const NewUserForm = () => {
             <Select
               labelId="role"
               id="role"
-              value={roleSelect}
+              value={roleName}
               name="roleName"
               label="Role"
-              onChange={(e) => setRoleSelect(e.target.value)}
+              onChange={(e) => setRoleName(e.target.value)}
               required
             >
               {roles &&
@@ -98,7 +112,7 @@ const NewUserForm = () => {
         </Grid>
         <Box textAlign="right">
           <Button variant="contained" type="submit">
-            Add Role
+            Update User
           </Button>
         </Box>
       </form>
@@ -106,4 +120,4 @@ const NewUserForm = () => {
   );
 };
 
-export default memo(NewUserForm);
+export default UpdateUserForm;

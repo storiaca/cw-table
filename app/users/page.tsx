@@ -19,7 +19,12 @@ export type UserType = {
 };
 
 const getUsers = async () => {
-  const users = await db.users.findMany({});
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const users = await db.users.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return users;
 };
 
@@ -30,14 +35,16 @@ const UsersPage = async () => {
     <Container>
       <Box>
         <Card>
-          <Typography variant="h2" component="h1">
+          <Typography variant="h2" component="h1" align="center">
             Users
           </Typography>
         </Card>
-
-        <UserList users={users} />
-
-        <Link href="/users/add">Add User</Link>
+      </Box>
+      <UserList users={users} />
+      <Box sx={{ textAlign: "right", paddingTop: "30px" }}>
+        <Link className="link-btn" href="/users/add">
+          Add User
+        </Link>
       </Box>
     </Container>
   );

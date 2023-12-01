@@ -16,6 +16,7 @@ export type RoleType = {
 };
 
 const getRoles = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   const roles = await db.roles.findMany({});
   return roles;
 };
@@ -26,13 +27,17 @@ const RolesPage = async () => {
     <Container>
       <Box>
         <Card>
-          <Typography variant="h2" component="h1">
+          <Typography variant="h2" component="h1" align="center">
             Roles
           </Typography>
         </Card>
       </Box>
       <RoleList roles={roles} />
-      <Link href="/roles/add">Add Role</Link>
+      <Box sx={{ textAlign: "right", paddingTop: "30px" }}>
+        <Link className="link-btn" href="/roles/add">
+          Add Role
+        </Link>
+      </Box>
     </Container>
   );
 };
